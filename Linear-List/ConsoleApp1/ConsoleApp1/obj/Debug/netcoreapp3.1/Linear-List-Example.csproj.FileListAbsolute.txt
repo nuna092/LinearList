@@ -1,0 +1,4 @@
+D:\Linear-List\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\Linear-List-Example.GeneratedMSBuildEditorConfig.editorconfig
+D:\Linear-List\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\Linear-List-Example.AssemblyInfoInputs.cache
+D:\Linear-List\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\Linear-List-Example.AssemblyInfo.cs
+D:\Linear-List\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\Linear-List-Example.csproj.CoreCompileInputs.cache
