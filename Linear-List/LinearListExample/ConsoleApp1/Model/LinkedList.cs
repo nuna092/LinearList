@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public class LinkedList<T>
+﻿public class LinkedList<T>
 {
     public Item<T> Head { get; private set;}
     public Item<T> Tail { get; private set; }
@@ -22,25 +17,36 @@ public class LinkedList<T>
 
     public void Add(T data)
     {
-
-        if (Tail != null)
+        if (Tail == null)
         {
-            var item = new Item<T>(data);
-            Tail.Next = item;
-            Tail = item;
-            Count++;
+            SetTail(SetHead(data));
+            return;
         }
-        else
-            SetHead(data);
+        CreatNewItem(data);
     }
 
-    private void SetHead(T data)
+    private void CreatNewItem(T data)
+    {
+        var item = new Item<T>(data);
+        Tail.Next = item;
+        SetTail(item);
+        Count++;
+    }
+
+    private Item<T> SetHead(T data)
     {
         var item = new Item<T>(data); 
         Head = item;
-        Tail = item;
         Count = 1;
+        return item;
     }
+
+    private void SetTail(Item<T> item)
+    {
+        Tail = item;
+    }
+
+
 
 
 }
