@@ -1,6 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 
-public class LinkedList<T>
+public class LinkedList<T>: IEnumerable
 {
     public Item<T> Head { get; private set;}
     public Item<T> Tail { get; private set; }
@@ -8,11 +8,11 @@ public class LinkedList<T>
 
     public LinkedList()
     {
-        Initialize();
+        ClearList();
     }
     public LinkedList(T data)
     {
-        Initialize();
+        ClearList();
         Add(data);
     }
 
@@ -26,13 +26,13 @@ public class LinkedList<T>
         CreatNewItem(data);
     }
 
-    public void Delete(Item<T> data)
+    public void Delete(T data)
     {
         if (Head == null)
             return;
-        if (data.Equals(Head))
+        if (Head.Data.Equals(data))
         {
-            Head = data.Next;
+            Head = Head.Next;
             Count--;
             return;
         }
@@ -54,7 +54,45 @@ public class LinkedList<T>
 
     }
 
-    private void Initialize()
+    public void Clear()
+    {
+        ClearList();
+    }
+
+    public void InsertAfter(T target, T data)
+    {
+        if(Head == null)
+        {
+            CreatNewItem(data);
+            return;
+        }
+
+        var current = Head.Next;
+        
+        if (Head.Data.Equals(target))
+        {
+            var item = new Item<T>(data);
+            item.Next = Head.Next;
+            Head.Next = item;
+            Count++;
+            return;
+        }
+
+        while (current != null)
+        {           
+            if (current.Data.Equals(target))
+            {
+                var item = new Item<T>(data);
+                item.Next = current.Next;
+                current.Next = item;
+                Count++;
+                return;
+            }        
+            current = current.Next;
+        }
+    }
+
+    private void ClearList()
     {
         Head = null;
         Tail = null;
@@ -82,7 +120,15 @@ public class LinkedList<T>
         Tail = item;
     }
 
-
+    public IEnumerator GetEnumerator()
+    {
+        var current = Head;
+        while (current != null)
+        {
+            yield return current.Data;
+            current = current.Next;
+        }
+    }
 
 
 }

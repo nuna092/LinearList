@@ -11,6 +11,17 @@ namespace LinearListExample
             list.Add(2);
             list.Add(3);
             list.Add(4);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+            list.Delete(1);
+            list.Delete(3);
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadLine();
         }
     }
