@@ -1,4 +1,6 @@
-﻿public class LinkedList<T>
+﻿using System;
+
+public class LinkedList<T>
 {
     public Item<T> Head { get; private set;}
     public Item<T> Tail { get; private set; }
@@ -6,13 +8,12 @@
 
     public LinkedList()
     {
-        Head = null;
-        Tail = null;
-        Count = 0;
+        Initialize();
     }
     public LinkedList(T data)
     {
-        SetHead(data);
+        Initialize();
+        Add(data);
     }
 
     public void Add(T data)
@@ -23,6 +24,41 @@
             return;
         }
         CreatNewItem(data);
+    }
+
+    public void Delete(Item<T> data)
+    {
+        if (Head == null)
+            return;
+        if (data.Equals(Head))
+        {
+            Head = data.Next;
+            Count--;
+            return;
+        }
+
+        var previous = Head;
+        var current = Head.Next;
+
+        while (current != null)
+        {
+            if (current.Data.Equals(data))
+            {               
+                previous.Next = current.Next;
+                Count--;
+                return;
+            }
+            previous = current;
+            current = current.Next;
+        }
+
+    }
+
+    private void Initialize()
+    {
+        Head = null;
+        Tail = null;
+        Count = 0;
     }
 
     private void CreatNewItem(T data)
