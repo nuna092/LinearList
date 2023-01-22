@@ -5,7 +5,6 @@ public class LinkedList<T>: IEnumerable
     public Item<T> Head { get; private set;}
     public Item<T> Tail { get; private set; }
     public int Count { get; private set; }
-
     public LinkedList()
     {
         ClearList();
@@ -66,30 +65,32 @@ public class LinkedList<T>: IEnumerable
             CreatNewItem(data);
             return;
         }
-
-        var current = Head.Next;
-        
+       
         if (Head.Data.Equals(target))
         {
-            var item = new Item<T>(data);
-            item.Next = Head.Next;
-            Head.Next = item;
-            Count++;
+            CreateItemAndIsert(Head, data);
             return;
         }
+       
+        var current = Head.Next;
 
         while (current != null)
         {           
             if (current.Data.Equals(target))
             {
-                var item = new Item<T>(data);
-                item.Next = current.Next;
-                current.Next = item;
-                Count++;
+                CreateItemAndIsert(current, data);
                 return;
             }        
             current = current.Next;
         }
+    }
+
+    private void CreateItemAndIsert(Item<T> previousItem, T data)
+    {
+        var item = new Item<T>(data);
+        item.Next = previousItem.Next;
+        previousItem.Next = item;
+        Count++;
     }
 
     private void ClearList()
